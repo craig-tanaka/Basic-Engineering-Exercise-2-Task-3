@@ -16,16 +16,24 @@ void loop() {
   buttonstate = digitalRead(BUTTON1_PIN);
 
   if(buttonstate == LOW){
-    digitalWrite(LED_BUILTIN, HIGH);
-    ledCounterPrint();
+    Serial.println("Button Pressed Printing Led 5 times");
+    for (int i = 0; i < 5; i++){
+      ledCounterPrint(i);
+      digitalWrite(LED_BUILTIN, HIGH);
+      delay(250);
+      digitalWrite(LED_BUILTIN, LOW);
+      delay(250);
+    }
   }else{
     digitalWrite(LED_BUILTIN, LOW);
   }
   delay(100);
 }
 
-void ledCounterPrint(){
-  Serial.print("lighting Led for the ");
-  Serial.print(ledLigthingCounter++);
+
+
+void ledCounterPrint(int i){
+  Serial.print("\tPrinting for the ");
+  Serial.print(++i);
   Serial.println("th time");
 }
